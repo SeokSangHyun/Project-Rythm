@@ -13,6 +13,7 @@ public class NewEmptyCSharpScript
     private float       fDeleteDelay;
     private int         iBorder;
     private int         iBitTime;
+    private int         iSoundIndex;
 
 
 

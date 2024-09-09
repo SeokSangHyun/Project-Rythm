@@ -1,0 +1,7 @@
+NodeType(4)
+EndTime(300)
+
+CreateTime|DeleteTime/NodePos|
+1|1/2 |1/3 |2/1 |5/0 
+5|1/2 |1/3 |2/1 |5/0 
+10|1/2 |1/3 |2/1 |5/0 
