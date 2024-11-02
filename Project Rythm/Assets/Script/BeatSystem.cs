@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class BeatSystem : MonoBehaviour
 {
     //사운드 추가
     private AudioSource audioSource;
@@ -30,6 +30,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume -= 0.95f;
+
+        obj = Instantiate(obj_Node1);
+        obj.GetComponent<cs_NodeControl>().Initialize();
     }
 
     // Update is called once per frame
@@ -44,15 +47,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 case 0:
                     break;
 
-                case 4:
-                    obj = Instantiate(obj_Node1);
-                    obj.GetComponent<cs_NodeControl>().Initialize();
-                    break;
+                //case 4:
+                //    obj = Instantiate(obj_Node1);
+                //    obj.GetComponent<cs_NodeControl>().Initialize();
+                //    break;
 
-                case 6:
-                    obj = Instantiate(obj_Node2);
-                    obj.GetComponent<cs_NodeControl>().Initialize();
-                    break;
+                //case 6:
+                //    obj = Instantiate(obj_Node2);
+                //    obj.GetComponent<cs_NodeControl>().Initialize();
+                //    break;
 
                 default:
                     break;

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,47 +13,57 @@ public enum NodeType
 
 public class cs_NodeControl : MonoBehaviour
 {
-    private bool                isButtonON          = false;
+    private GameObject          MainCanvas;
+    private Canvas              m_canvas;
+    private GameObject          m_nodeParent;
 
-    private float               speed               = 100;
-    private RectTransform       rectTransform, startPosition;
+    private Vector2             ClearAreaLocation;
 
-    private float f;
+    private RectTransform       rectTransform;
+    private float               m_distance = 1.0f;
+    private float               speed               = 0.1f;
 
+
+    private bool                IsInit = false;
 
 
     // 객체 초기화
     public void Initialize()
     {
-        Canvas canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        MainCanvas = GameObject.Find("MainCanvas");
+        m_canvas = MainCanvas.GetComponent<Canvas>();
+        m_nodeParent = m_canvas.transform.Find("DefaultBeatArea").gameObject;
+
+        gameObject.transform.parent = m_nodeParent.transform;
+        ClearAreaLocation = m_nodeParent.GetComponent<RectTransform>().anchoredPosition;
+
         rectTransform = gameObject.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = Vector2.zero + new Vector2(-150, 0);
 
-        gameObject.transform.parent = canvas.transform;
-        rectTransform.anchoredPosition = new Vector2(0, -Screen.height/2 + 100);
-
-
+        IsInit = true;
     }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rectTransform = gameObject.GetComponent<RectTransform>();
-
-        Button button = gameObject.GetComponent<Button>();
-        button.onClick.AddListener(OnButtonClick);
+        gameObject.GetComponent<Button>().onClick.AddListener(OnButtonClick);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isButtonON)
+        if (IsInit)
         {
 
-        }
-        else
-        {
-            rectTransform.anchoredPosition += new Vector2(speed * Time.deltaTime, 0);
+            if (Vector2.Distance(m_nodeParent.transform.position, rectTransform.position) <= m_distance)
+            {
+                StartCoroutine( GameManager.Instance.DelayTime(0.5f, () => Destroy(gameObject)) );
+            }
+            else
+            {
+                rectTransform.anchoredPosition += new Vector2(speed + Time.deltaTime, 0);
+            }
         }
     }
 
@@ -60,68 +71,12 @@ public class cs_NodeControl : MonoBehaviour
 
     void OnButtonClick()
     {
-        isButtonON = true;
-
-        startPosition = gameObject.GetComponent<RectTransform>();
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
+
 }
 
 
-
-//public class ParabolaMovement : MonoBehaviour
-//{
-//    public RectTransform buttonRectTransform;
-//    public float duration = 1.0f;  // 포물선 운동의 지속 시간
-//    public float height = 100.0f;  // 포물선의 최대 높이
-//    public float distance = 200.0f;  // x축 이동 거리
-
-//    private Vector2 startPosition;
-//    private bool isMoving = false;
-//    private float elapsedTime = 0f;
-
-//    void Start()
-//    {
-//        // 버튼의 시작 위치를 저장합니다.
-//        startPosition = buttonRectTransform.anchoredPosition;
-
-//        // 버튼에 클릭 이벤트를 추가합니다.
-//        GetComponent<Button>().onClick.AddListener(StartParabolaMovement);
-//    }
-
-//    void Update()
-//    {
-//        if (isMoving)
-//        {
-//            elapsedTime += Time.deltaTime;
-
-//            // t는 0에서 1까지 증가하며, 운동이 끝나면 멈춥니다.
-//            float t = elapsedTime / duration;
-//            if (t > 1.0f)
-//            {
-//                t = 1.0f;
-//                isMoving = false;
-//            }
-
-//            // 포물선 운동 수식: x = distance * t, y = height * (1 - (2 * t - 1)^2)
-//            float x = distance * t;
-//            float y = height * (1 - Mathf.Pow(2 * t - 1, 2));
-
-//            // 새 위치 계산 (원래 위치 + 계산된 x, y)
-//            buttonRectTransform.anchoredPosition = startPosition + new Vector2(x, y);
-//        }
-//    }
-
-//    void StartParabolaMovement()
-//    {
-//        if (!isMoving)
-//        {
-//            // 변수 초기화
-//            elapsedTime = 0f;
-//            isMoving = true;
-//        }
-//    }
-//}
 
 
 
