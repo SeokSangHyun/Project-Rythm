@@ -1,18 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CheckAreaInput : MonoBehaviour
+public class csCheckAreaSystem : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.GetComponent<Button>().onClick.AddListener(OnButtonClick);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -22,7 +16,11 @@ public class CheckAreaInput : MonoBehaviour
 
     void OnButtonClick()
     {
-        GameManager.Instance.RemoveInClearNode();
+        //GameManager.Instance.RemoveInClearNode();
         Destroy(gameObject);
     }
+
+
+
+
 }

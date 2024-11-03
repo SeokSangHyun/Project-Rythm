@@ -35,7 +35,6 @@ public class BeatSystem : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume -= 0.95f;
-
     }
 
     // Update is called once per frame
@@ -52,19 +51,19 @@ public class BeatSystem : MonoBehaviour
 
                 case 4:
                     obj = Instantiate(obj_Node1);
-                    obj.GetComponent<cs_NodeControl>().Initialize();
+                    obj.GetComponent<csNodeControl>().Initialize();
                     break;
 
                 case 6:
                     obj = Instantiate(obj_Node2);
-                    obj.GetComponent<cs_NodeControl>().Initialize();
+                    obj.GetComponent<csNodeControl>().Initialize();
                     break;
 
                 default:
                     break;
             }
 
-            print(iBeatAccCount + "Beat!");
+            //print(iBeatAccCount + "Beat!");
         }
     }
 
@@ -83,7 +82,7 @@ public class BeatSystem : MonoBehaviour
             iBeatAccCount += 1;
 
             obj_BeatNode = Instantiate(prefab_BeatNode);
-            obj_BeatNode.GetComponent<cs_NodeControl>().Initialize();
+            obj_BeatNode.GetComponent<csNodeControl>().Initialize();
 
             audioSource.Play();
 

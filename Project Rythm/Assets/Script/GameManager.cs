@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
 
     //인게임에 필요한 데이터
-    private Queue<GameObject> InClearNode;
+    private Queue<GameObject> InClearNode = new Queue<GameObject>();
 
 
     //프로젝트 실행 단계에서 실행
@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
 
         if (func != null)
         {
-            print("들옴");
             func();
         }
     }
@@ -74,21 +73,23 @@ public class GameManager : MonoBehaviour
     //클리어 영역에 노드 추가
     public void AddInClearNode(GameObject obj)
     {
-        InClearNode.Enqueue(obj);
+        this.InClearNode.Enqueue(obj);
+        print("------------------------");
     }
 
 
     //클리어 영역에서 노드 제거
-    public void RemoveInClearNode(GameObject obj)
+    public void RemoveInClearNode()
     {
         //제거할 노드가 없을 때 처리.
-        if (InClearNode.Count <= 0)
+        if (this.InClearNode.Count <= 0)
         {
             print("제거할 노드가 없습니다.");
             return;
         }
 
-        InClearNode.Dequeue();
+        this.InClearNode.Dequeue();
+        print(this.InClearNode.Count);
     }
 
 }
