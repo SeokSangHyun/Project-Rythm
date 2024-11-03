@@ -7,8 +7,10 @@ public class BeatSystem : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip audioClip;
 
-    GameObject obj_Node1, obj_Node2;
-
+    GameObject              obj_BeatNode;
+    GameObject              prefab_BeatNode;
+    GameObject              obj_Node1, obj_Node2;
+    GameObject              obj;
 
 
     // 비트 변수
@@ -18,21 +20,22 @@ public class BeatSystem : MonoBehaviour
     private     float       fInterval = 0.25f;
     private     float       fWaitTime = 0.0f;
 
-    GameObject obj;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //기본 비트 표시
+        prefab_BeatNode = Resources.Load<GameObject>("Prefab/prefab_BeatNode_Arrow");
+
         obj_Node1 = Resources.Load<GameObject>("Prefab/prefab_Node_1");
         obj_Node2 = Resources.Load<GameObject>("Prefab/prefab_Node_2");
+
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume -= 0.95f;
 
-        obj = Instantiate(obj_Node1);
-        obj.GetComponent<cs_NodeControl>().Initialize();
     }
 
     // Update is called once per frame
@@ -47,15 +50,15 @@ public class BeatSystem : MonoBehaviour
                 case 0:
                     break;
 
-                //case 4:
-                //    obj = Instantiate(obj_Node1);
-                //    obj.GetComponent<cs_NodeControl>().Initialize();
-                //    break;
+                case 4:
+                    obj = Instantiate(obj_Node1);
+                    obj.GetComponent<cs_NodeControl>().Initialize();
+                    break;
 
-                //case 6:
-                //    obj = Instantiate(obj_Node2);
-                //    obj.GetComponent<cs_NodeControl>().Initialize();
-                //    break;
+                case 6:
+                    obj = Instantiate(obj_Node2);
+                    obj.GetComponent<cs_NodeControl>().Initialize();
+                    break;
 
                 default:
                     break;
@@ -78,6 +81,9 @@ public class BeatSystem : MonoBehaviour
             IsBeat = true;
             fWaitTime = 0.0f;
             iBeatAccCount += 1;
+
+            obj_BeatNode = Instantiate(prefab_BeatNode);
+            obj_BeatNode.GetComponent<cs_NodeControl>().Initialize();
 
             audioSource.Play();
 

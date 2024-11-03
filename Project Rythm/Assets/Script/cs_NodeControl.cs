@@ -4,15 +4,34 @@ using UnityEngine.UI;
 
 public enum NodeType
 {
+    OnlyBeat,
     Normal,
     MiddleSpot,
     FireCrack
+}
+
+public enum NodeCheckType
+{
+    Miss,
+    Normal,
+    Good,
+    Perfect
 }
 
 
 
 public class cs_NodeControl : MonoBehaviour
 {
+    // 체크 타입에 대한 변수들
+    public NodeType             NodeType;
+    private float               MissDist = 50.0f;
+    private float               NormalDist = 30.0f;
+    private float               GoodDist = 10.0f;
+    private float               PerfectDist = 5.0f;
+
+
+
+    //사용 객체
     private GameObject          MainCanvas;
     private Canvas              m_canvas;
     private GameObject          m_nodeParent;
@@ -20,11 +39,17 @@ public class cs_NodeControl : MonoBehaviour
     private Vector2             ClearAreaLocation;
 
     private RectTransform       rectTransform;
+    private float               speed               = 0.8f;
+
+
+    //
+
     private float               m_distance = 1.0f;
-    private float               speed               = 0.1f;
 
 
+    // 노드 상태 확인용 변수
     private bool                IsInit = false;
+    private bool                IsDead = false;
 
 
     // 객체 초기화
@@ -47,7 +72,6 @@ public class cs_NodeControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.GetComponent<Button>().onClick.AddListener(OnButtonClick);
     }
 
     // Update is called once per frame
@@ -56,17 +80,26 @@ public class cs_NodeControl : MonoBehaviour
         if (IsInit)
         {
 
-            if (Vector2.Distance(m_nodeParent.transform.position, rectTransform.position) <= m_distance)
+            if (!IsDead &&
+                Vector2.Distance(m_nodeParent.transform.position, rectTransform.position) <= m_distance)
             {
+<<<<<<< Updated upstream
                 GameManager.Instance.RemoveInClearNode(gameObject);
                 StartCoroutine( GameManager.Instance.DelayTime(0.5f, () => Destroy(gameObject)) );
             }
             else
             {
                 rectTransform.anchoredPosition += new Vector2(speed + Time.deltaTime, 0);
+=======
+                IsDead = true;
+                StartCoroutine( GameManager.Instance.DelayTime(0.3f, () => Destroy(gameObject)) );
+>>>>>>> Stashed changes
             }
+
+            rectTransform.anchoredPosition += new Vector2(speed + Time.deltaTime, 0);
         }
     }
+<<<<<<< Updated upstream
 
 
 
@@ -75,6 +108,8 @@ public class cs_NodeControl : MonoBehaviour
         //Destroy(gameObject);
     }
 
+=======
+>>>>>>> Stashed changes
 }
 
 
