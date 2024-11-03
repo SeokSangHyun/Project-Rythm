@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     // 인스턴스 객체 생성
     private static GameManager instance = null;
 
+    //인게임에 필요한 데이터
+    private Queue<GameObject> InClearNode;
+
 
     //프로젝트 실행 단계에서 실행
     private void Awake()
@@ -62,4 +65,30 @@ public class GameManager : MonoBehaviour
             func();
         }
     }
+
+
+    //----------------------------------------------------------------------------------------------------
+    // 클리어 영역에 있는 노드
+    //----------------------------------------------------------------------------------------------------
+
+    //클리어 영역에 노드 추가
+    public void AddInClearNode(GameObject obj)
+    {
+        InClearNode.Enqueue(obj);
+    }
+
+
+    //클리어 영역에서 노드 제거
+    public void RemoveInClearNode(GameObject obj)
+    {
+        //제거할 노드가 없을 때 처리.
+        if (InClearNode.Count <= 0)
+        {
+            print("제거할 노드가 없습니다.");
+            return;
+        }
+
+        InClearNode.Dequeue();
+    }
+
 }

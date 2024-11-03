@@ -58,6 +58,7 @@ public class cs_NodeControl : MonoBehaviour
 
             if (Vector2.Distance(m_nodeParent.transform.position, rectTransform.position) <= m_distance)
             {
+                GameManager.Instance.RemoveInClearNode(gameObject);
                 StartCoroutine( GameManager.Instance.DelayTime(0.5f, () => Destroy(gameObject)) );
             }
             else
@@ -71,7 +72,7 @@ public class cs_NodeControl : MonoBehaviour
 
     void OnButtonClick()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 }
