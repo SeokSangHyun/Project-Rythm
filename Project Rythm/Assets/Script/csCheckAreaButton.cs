@@ -16,8 +16,13 @@ public class csCheckAreaSystem : MonoBehaviour
 
     void OnButtonClick()
     {
-        //GameManager.Instance.RemoveInClearNode();
-        Destroy(gameObject);
+        GameObject obj = GameManager.Instance.RemoveInClearNode();
+        if (obj != null)
+        {
+            Destroy(obj);
+
+            //여기서 유저 행동 액션
+        }
     }
 
 

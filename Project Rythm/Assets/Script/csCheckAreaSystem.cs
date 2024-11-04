@@ -18,7 +18,7 @@ public class csCheckAreaButton : MonoBehaviour
     // 충돌 영역에 들어왔을 때 ( collision 충돌한 객체 )
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject.name);
+        //print(collision.gameObject.name);
         //GameManager.Instance.AddInClearNode(collision.gameObject);
     }
 

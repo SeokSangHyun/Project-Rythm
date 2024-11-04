@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using static TreeEditor.TreeEditorHelper;
 
 public class BeatSystem : MonoBehaviour
 {
@@ -9,13 +10,13 @@ public class BeatSystem : MonoBehaviour
 
     GameObject              obj_BeatNode;
     GameObject              prefab_BeatNode;
-    GameObject              obj_Node1, obj_Node2;
+    GameObject              prefab_Node1, obj_Node2;
     GameObject              obj;
 
 
     // 비트 변수
     private     bool        IsBeat = false;
-    private     int         iBeatAccCount = 0;
+    private     int         iBeatAccCount, iNodeCount = 0;
 
     private     float       fInterval = 0.25f;
     private     float       fWaitTime = 0.0f;
@@ -28,7 +29,7 @@ public class BeatSystem : MonoBehaviour
         //기본 비트 표시
         prefab_BeatNode = Resources.Load<GameObject>("Prefab/prefab_BeatNode_Arrow");
 
-        obj_Node1 = Resources.Load<GameObject>("Prefab/prefab_Node_1");
+        prefab_Node1 = Resources.Load<GameObject>("Prefab/prefab_Node_1");
         obj_Node2 = Resources.Load<GameObject>("Prefab/prefab_Node_2");
 
 
@@ -50,13 +51,11 @@ public class BeatSystem : MonoBehaviour
                     break;
 
                 case 4:
-                    obj = Instantiate(obj_Node1);
-                    obj.GetComponent<csNodeControl>().Initialize();
+                    CreateBeatNode(NodeType.Normal);
                     break;
 
                 case 6:
-                    obj = Instantiate(obj_Node2);
-                    obj.GetComponent<csNodeControl>().Initialize();
+                    CreateBeatNode(NodeType.Normal);
                     break;
 
                 default:
@@ -68,6 +67,9 @@ public class BeatSystem : MonoBehaviour
     }
 
 
+    //----------------------------------------------------------------------------------------------------
+    // 노드 비트 계산
+    //----------------------------------------------------------------------------------------------------
 
     // 내용 : 비트를 판단해서 반환
     //        True 반환
@@ -81,8 +83,7 @@ public class BeatSystem : MonoBehaviour
             fWaitTime = 0.0f;
             iBeatAccCount += 1;
 
-            obj_BeatNode = Instantiate(prefab_BeatNode);
-            obj_BeatNode.GetComponent<csNodeControl>().Initialize();
+            CreateBeatNode(NodeType.OnlyBeat);
 
             audioSource.Play();
 
@@ -93,8 +94,32 @@ public class BeatSystem : MonoBehaviour
     }
 
 
+    // 내용 : 비트 노드 생성
+    private void CreateBeatNode(NodeType nodeType)
+    {
+        GameObject obj;
+
+        if (nodeType == NodeType.OnlyBeat)
+        {
+            obj = Instantiate(prefab_BeatNode);
+            obj.name = prefab_BeatNode.name + iNodeCount;
+            obj.GetComponent<csNodeControl>().Initialize();
+        }
+        else if (nodeType == NodeType.Normal)
+        {
+            obj = Instantiate(prefab_Node1);
+            obj.name = prefab_Node1.name + iNodeCount;
+            obj.GetComponent<csNodeControl>().Initialize();
+        }
+        else
+        {
+            --iNodeCount;
+        }
 
 
+
+        ++iNodeCount;
+    }
 }
 
 

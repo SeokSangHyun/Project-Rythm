@@ -33,7 +33,7 @@ public class csNodeControl : MonoBehaviour
 
 
     //------------------------------시스템 변수들
-    public NodeType NodeType;
+    public NodeType m_nodeType;
 
 
     // 체크 타입에 대한 변수들
@@ -104,7 +104,11 @@ public class csNodeControl : MonoBehaviour
         {
             IsDead = true;
             IsAreaIn = false;
-            GameManager.Instance.RemoveInClearNode();
+
+            if (m_nodeType != NodeType.OnlyBeat)
+            {
+                GameManager.Instance.RemoveInClearNode();
+            }
             StartCoroutine(GameManager.Instance.DelayTime(0.5f, () => Destroy(gameObject)));
         }
 
@@ -112,7 +116,11 @@ public class csNodeControl : MonoBehaviour
         if (!IsAreaIn && - m_nodeParent.GetComponent<RectTransform>().sizeDelta.x / 2 <= m_rectTransform.anchoredPosition.x)
         {
             IsAreaIn = true;
-            GameManager.Instance.AddInClearNode(gameObject);
+
+            if (m_nodeType != NodeType.OnlyBeat)
+            {
+                GameManager.Instance.AddInClearNode(gameObject);
+            }
         }
 
 

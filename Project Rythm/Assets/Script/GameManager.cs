@@ -74,22 +74,22 @@ public class GameManager : MonoBehaviour
     public void AddInClearNode(GameObject obj)
     {
         this.InClearNode.Enqueue(obj);
-        print("------------------------");
+        print(obj);
+        //print("------------------------");
     }
 
 
     //클리어 영역에서 노드 제거
-    public void RemoveInClearNode()
+    public GameObject RemoveInClearNode()
     {
         //제거할 노드가 없을 때 처리.
         if (this.InClearNode.Count <= 0)
         {
             print("제거할 노드가 없습니다.");
-            return;
+            return null;
         }
 
-        this.InClearNode.Dequeue();
-        print(this.InClearNode.Count);
+        return this.InClearNode.Dequeue();
     }
 
 }
