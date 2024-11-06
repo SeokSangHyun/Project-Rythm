@@ -1,17 +1,11 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using static TreeEditor.TreeEditorHelper;
 
 public class BeatSystem : MonoBehaviour
 {
     //사운드 추가
     private AudioSource audioSource;
     public AudioClip audioClip;
-
-    GameObject              obj_BeatNode;
-    GameObject              prefab_BeatNode;
-    GameObject              prefab_Node1, obj_Node2;
-    GameObject              obj;
 
 
     // 비트 변수
@@ -26,12 +20,6 @@ public class BeatSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //기본 비트 표시
-        prefab_BeatNode = Resources.Load<GameObject>("Prefab/prefab_BeatNode_Arrow");
-
-        prefab_Node1 = Resources.Load<GameObject>("Prefab/prefab_Node_1");
-        obj_Node2 = Resources.Load<GameObject>("Prefab/prefab_Node_2");
-
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
@@ -97,25 +85,8 @@ public class BeatSystem : MonoBehaviour
     // 내용 : 비트 노드 생성
     private void CreateBeatNode(NodeType nodeType)
     {
-        GameObject obj;
-
-        if (nodeType == NodeType.OnlyBeat)
-        {
-            obj = Instantiate(prefab_BeatNode);
-            obj.name = prefab_BeatNode.name + iNodeCount;
-            obj.GetComponent<csNodeControl>().Initialize();
-        }
-        else if (nodeType == NodeType.Normal)
-        {
-            obj = Instantiate(prefab_Node1);
-            obj.name = prefab_Node1.name + iNodeCount;
-            obj.GetComponent<csNodeControl>().Initialize();
-        }
-        else
-        {
-            --iNodeCount;
-        }
-
+        GameObject obj = Instantiate( WeaponList.GetBeatNode(nodeType) );
+        obj.name = obj.name + iNodeCount;
 
 
         ++iNodeCount;

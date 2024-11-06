@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2353154881373041483}
   - component: {fileID: 5671686209981805538}
   m_Layer: 5
-  m_Name: SideNode
+  m_Name: prefab_Normal_White_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

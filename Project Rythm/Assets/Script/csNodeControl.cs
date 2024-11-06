@@ -1,15 +1,7 @@
 using Unity.VisualScripting;
-using UnityEditor.VisionOS;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum NodeType
-{
-    OnlyBeat,
-    Normal,
-    MiddleSpot,
-    FireCrack
-}
 
 public enum NodeCheckType
 {
