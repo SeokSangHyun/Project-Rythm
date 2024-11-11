@@ -24,13 +24,16 @@ public class csCheckAreaSystem : MonoBehaviour
 
         //
 
-        GameObject obj = GameManager.Instance.RemoveInClearNode();
-        if (obj != null)
-        {
-            Destroy(obj);
+        GameObject          obj             = GameManager.Instance.RemoveInClearNode();
+        print(obj.name);
+        INodeActionClass    classScript     = obj.GetComponent<INodeActionClass>();
 
-            //여기서 유저 행동 액션
+        if (classScript == null )
+        {
+            print("삭제할 노드가 없음");
+            return;
         }
+        classScript.OnClickEvent();
     }
 
 

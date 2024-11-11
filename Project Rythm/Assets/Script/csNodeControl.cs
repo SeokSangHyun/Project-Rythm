@@ -56,7 +56,7 @@ public class csNodeControl : MonoBehaviour
 
 
     // ∞¥√º √ ±‚»≠
-    public void Initialize()
+    void Start()
     {
         MainCanvas = GameObject.Find("MainCanvas");
         m_nodeParent = MainCanvas.transform.Find("CheckArea").gameObject;
@@ -97,7 +97,7 @@ public class csNodeControl : MonoBehaviour
             IsDead = true;
             IsAreaIn = false;
 
-            if (m_nodeType != NodeType.OnlyBeat)
+            if (m_nodeType != NodeType.Test && m_nodeType != NodeType.OnlyBeat)
             {
                 GameManager.Instance.RemoveInClearNode();
             }
@@ -109,7 +109,7 @@ public class csNodeControl : MonoBehaviour
         {
             IsAreaIn = true;
 
-            if (m_nodeType != NodeType.OnlyBeat)
+            if (m_nodeType != NodeType.Test && m_nodeType != NodeType.OnlyBeat)
             {
                 GameManager.Instance.AddInClearNode(gameObject);
             }

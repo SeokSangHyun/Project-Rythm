@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2182878594464667074}
   - component: {fileID: 498634831475505149}
   - component: {fileID: 6239222359674797524}
+  - component: {fileID: -2158493965005518253}
   m_Layer: 5
   m_Name: prefab_BeatNode_Arrow
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9852b7baf0d82c1499524571a438ca5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeType: 0
+  m_nodeType: 1
 --- !u!61 &498634831475505149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,6 +136,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-2158493965005518253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666242355760157957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452fa306da765b94d874c0761bfe3461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7317455932051267913
 GameObject:
   m_ObjectHideFlags: 0

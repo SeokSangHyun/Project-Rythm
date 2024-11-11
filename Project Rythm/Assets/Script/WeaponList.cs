@@ -36,9 +36,9 @@ public class WeaponList : MonoBehaviour
     // 여기에 무기가 추가될 때마다 추가해줘야함
     void Start()
     {
-        list_prefab.Add(NodeType.OnlyBeat, (prefab_node_test, prefab_weapon_test));                     // 비트용 오브젝트
+        list_prefab.Add(NodeType.Test, (prefab_node_test, prefab_weapon_test));                     // 비트용 오브젝트
         list_prefab.Add(NodeType.OnlyBeat, (prefab_node_onlybeat, null));                               // 비트용 오브젝트
-        list_prefab.Add(NodeType.OnlyBeat, (prefab_node_normal, prefab_weapon_manaball));               // 비트용 오브젝트
+        list_prefab.Add(NodeType.Normal, (prefab_node_normal, prefab_weapon_manaball));               // 비트용 오브젝트
 
     }
 

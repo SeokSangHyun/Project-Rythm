@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     public void AddInClearNode(GameObject obj)
     {
         this.InClearNode.Enqueue(obj);
-        print(obj);
         //print("------------------------");
     }
 
