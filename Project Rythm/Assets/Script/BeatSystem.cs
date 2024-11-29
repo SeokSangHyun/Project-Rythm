@@ -20,35 +20,41 @@ public class BeatSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume -= 0.95f;
+
+        GameManager.Instance.InitItem();
+        GameManager.Instance.AddItem(NodeType.Normal);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.CheckIsPause()) { return; }
+
         if ( BeatUpdate(Time.deltaTime) )
         {
             IsBeat = false;
 
-            switch (iBeatAccCount%8)
-            {
-                case 0:
-                    break;
+            Invoke_BeatNode();     //일괄 실행
 
-                case 4:
-                    CreateBeatNode(NodeType.Normal);
-                    break;
+            //switch (iBeatAccCount%8)
+            //{
+            //    case 0:
+            //        break;
 
-                case 6:
-                    CreateBeatNode(NodeType.Normal);
-                    break;
+            //    case 4:
+            //        CreateBeatNode(NodeType.Normal);
+            //        break;
 
-                default:
-                    break;
-            }
+            //    case 6:
+            //        CreateBeatNode(NodeType.Normal);
+            //        break;
+
+            //    default:
+            //        break;
+            //}
 
             //print(iBeatAccCount + "Beat!");
         }
@@ -71,7 +77,8 @@ public class BeatSystem : MonoBehaviour
             fWaitTime = 0.0f;
             iBeatAccCount += 1;
 
-            CreateBeatNode(NodeType.OnlyBeat);
+
+            //CreateBeatNode(NodeType.OnlyBeat);
 
             audioSource.Play();
 
@@ -91,6 +98,17 @@ public class BeatSystem : MonoBehaviour
 
         ++iNodeCount;
     }
+
+    // 내용 : 비트 노드 일괄 실행
+    private void Invoke_BeatNode()
+    {
+        GameObject obj = Instantiate(WeaponList.GetBeatNode(NodeType.Test));
+        obj.name = obj.name + iNodeCount;
+
+
+        ++iNodeCount;
+    }
+    
 }
 
 

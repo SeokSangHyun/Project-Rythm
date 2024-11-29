@@ -18,6 +18,7 @@ public class WeaponList : MonoBehaviour
     //무기 모음
     static Dictionary<NodeType, (GameObject Node, GameObject Weapon)> list_prefab = new Dictionary<NodeType, (GameObject, GameObject)>();
 
+
     //노드 프리팹
     [Header("Beat Node")]
     public GameObject prefab_node_test;

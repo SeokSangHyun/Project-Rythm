@@ -72,6 +72,8 @@ public class csNodeControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.CheckIsPause()) { return; }
+
         //초기화 안했다면 반환 처리
         if (!IsInit) { return; }
 
