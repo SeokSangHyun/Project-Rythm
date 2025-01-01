@@ -1,88 +1,1 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-
-
-public class WeaponManager : MonoBehaviour
-{
-    //½Ì±ÛÅæÈ­
-    public static WeaponManager Instance { get; private set; }
-
-    //ÇØ´ç Å¬·¡½º µ¥ÀÌÅÍ
-    private Dictionary<EnumWeapon, (GameObject Node, GameObject Weapon)> list_myWeapon = new Dictionary<eWeapon, (GameObject, GameObject)>();
-
-    //----------------------------------------------------------------------------------------------------
-    void Awake()
-    {
-        // ½Ì±ÛÅæ ÃÊ±âÈ­
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); // ±âÁ¸ ÀÎ½ºÅÏ½º°¡ ÀÖÀ¸¸é »õ·Î »ý¼ºµÈ °ÍÀ» ÆÄ±«
-            return;
-        }
-        Instance = this;
-
-        // ½Ì±ÛÅæÀÌ ÆÄ±«µÇÁö ¾Êµµ·Ï À¯Áö
-        DontDestroyOnLoad(gameObject);
-    }
-
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update(){}
-
-
-
-    //----------------------------------------------------------------------------------------------------
-    // ÀåÂø ¹«±â ¹ÝÈ¯
-    //----------------------------------------------------------------------------------------------------
-
-    //ÀåÂøÇÑ ¹«±â ÃÊ±âÈ­
-    public void InitItem()
-    {
-        list_myWeapon.Clear();
-
-        EnumWeapon e_weapon = EnumWeapon.Empty;
-        GameObject node = StaticWeaponList.GetBeatNode(e_weapon);
-        GameObject weapon = StaticWeaponList.GetWeapon(e_weapon);
-
-        list_myWeapon.Add(e_weapon, (node, weapon));
-    }
-
-    //ÀåÂøÇÑ ¹«±â ½ÇÇà
-    public void InvokeEquipItem_Node()
-    {
-        foreach ( KeyValuePair<EnumWeapon, (GameObject Node, GameObject Weapon)> pair in list_myWeapon)
-        {
-            pair.Value.Node.GetComponent<INodeActionClass>().Invoke();
-        }
-    }
-
-    //----------------------------------------------------------------------------------------------------
-    // ÀåÂø / ÇØÁ¦
-    //----------------------------------------------------------------------------------------------------
-
-    //¹«±â ÀåÂøÇÏ±â
-    public void EquipItem(EnumWeapon e_weapon)
-    {
-        GameObject node = StaticWeaponList.GetBeatNode(e_weapon);
-        GameObject weapon = StaticWeaponList.GetWeapon(e_weapon);
-
-        list_myWeapon.Add(e_weapon, (node, weapon));
-    }
-
-    //¹«±â ÀåÂø ÇØÁ¦ÇÏ±â
-    public void unEquipItem(EnumWeapon e_weapon)
-    {
-        if ( !list_myWeapon.ContainsKey(e_weapon) )
-        {
-            print("ÇØ´ç ¹«±â¸¦ ÀåÂøÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
-            return;
-        }
-
-        list_myWeapon.Remove(e_weapon);
-    }
-
-}
+using System.Collections.Generic;using UnityEngine;public class WeaponManager : MonoBehaviour{    //ï¿½Ì±ï¿½ï¿½ï¿½È­    public static WeaponManager Instance { get; private set; }    //ï¿½Ø´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½    private Dictionary<EnumWeapon, WeaponObjectClass> list_myWeapon = new Dictionary<EnumWeapon, WeaponObjectClass>();    //----------------------------------------------------------------------------------------------------    void Awake()    {        // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­        if (Instance != null && Instance != this)        {            Destroy(gameObject); // ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½            return;        }        Instance = this;        // ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½        DontDestroyOnLoad(gameObject);    }    void Start(){}    // Update is called once per frame    void Update(){}    //----------------------------------------------------------------------------------------------------    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯    //----------------------------------------------------------------------------------------------------    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­    public void InitItem()    {        list_myWeapon.Clear();                EnumWeapon e_weapon         = EnumWeapon.Test;        WeaponObjectClass woScript;        GameObject node = StaticWeaponList.GetBeatNode(e_weapon);        GameObject weapon = StaticWeaponList.GetWeapon(e_weapon);        //list_myWeapon.Add(e_weapon, (node, weapon));    }    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½    public void InvokeEquipItem_Node()    {        foreach ( KeyValuePair<EnumWeapon, WeaponObjectClass> pair in list_myWeapon)        {            //pair.Value.Node.GetComponent<INodeActionClass>().Invoke();        }    }    //----------------------------------------------------------------------------------------------------    // ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½    //----------------------------------------------------------------------------------------------------    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½    public void EquipItem(EnumWeapon e_weapon)    {        // GameObject node = StaticWeaponList.GetBeatNode(e_weapon);        // GameObject weapon = StaticWeaponList.GetWeapon(e_weapon);        //        // list_myWeapon.Add(e_weapon, (node, weapon));    }    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½    public void unEquipItem(EnumWeapon e_weapon)    {        // if ( !list_myWeapon.ContainsKey(e_weapon) )        // {        //     print("ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");        //     return;        // }        //        // list_myWeapon.Remove(e_weapon);    }}

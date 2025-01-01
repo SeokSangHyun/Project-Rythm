@@ -13,12 +13,20 @@ public enum EnumWeapon
 
 
 //--------------------------------------------------
-// 장비의 리듬에 대한 Interface Class
+// ?? ??? Weapon Class 
 //--------------------------------------------------
-public interface IWeaponClass
+public class WeaponClass : MonoBehaviour
 {
     //노드 용 변수
-    EnumWeapon eWeapon { get; }
+    protected EnumWeapon eWeapon { get; set; }
+    
+    public virtual void Init(EnumWeapon _e)
+    {
+        eWeapon = _e;
+    }
 
-    void Damage();               //비트 체크
+    public virtual void Damage()
+    {
+        
+    }
 }

@@ -1,15 +1,8 @@
 using UnityEngine;
 
-public class WeaponObjectClass : MonoBehaviour, IRythmClass , IWeaponClass
+public class WeaponObjectClass : WeaponClass , IRythmClass
 {
-    // IRythmClass 인터페이스 변수
-    [SerializeField]
-    private NodeType _nodeType;
-    public NodeType nodeType
-    {
-        get => _nodeType;
-        set => _nodeType = value;
-    }
+    // IRythmClass 인터페이스 변수  
     public int StartBeat       { get; private set; } = 0;
     public int BeatTimming     { get; private set; } = 0;
     public int BeatCoolTime    { get; private set; } = 0;
@@ -17,8 +10,14 @@ public class WeaponObjectClass : MonoBehaviour, IRythmClass , IWeaponClass
     public int RailIndex       { get; private set; } = 0;
 
 
-    // IWeaponClass 인터페이스 변수
-    public EnumWeapon eWeapon { get; private set; } = EnumWeapon.Test;
+    //--------------------------------------------------
+    // 초기화 함수
+    //--------------------------------------------------
+    public override void Init(EnumWeapon _e)
+    {
+        base.Init(_e);
+    }
+
 
 
     //--------------------------------------------------
@@ -26,7 +25,7 @@ public class WeaponObjectClass : MonoBehaviour, IRythmClass , IWeaponClass
     //--------------------------------------------------
     public void Beat(int beatCount)
     {
-        // 생성 시점에서 노드 생성하기
+        // ??? ???? ??? ? ?? ??
         if ((beatCount % BeatTimming) == 0)
         {
             GameObject obj = Instantiate(StaticWeaponList.GetBeatNode(eWeapon));

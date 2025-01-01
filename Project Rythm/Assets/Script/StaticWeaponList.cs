@@ -16,24 +16,25 @@ public enum NodeType
 
 public static class StaticWeaponList
 {
-    //¹«±â ¸ðÀ½
+    //
     public static Dictionary<EnumWeapon, (GameObject Node, GameObject Weapon)> list_prefab = new Dictionary<EnumWeapon, (GameObject, GameObject)>();
 
 
     // 
     public static void WeaponDataLoad()
     {
-        //³ëµå ÇÁ¸®ÆÕ
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GameObject prefab_node_test                = Resources.Load<GameObject>("Prefab/BitNodes/prefab_BeatNode_Test");
         GameObject prefab_node_onlybeat            = Resources.Load<GameObject>("Prefab/BitNodes/prefab_BeatNode_Arrow");
         GameObject prefab_node_normal = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Normal_White_01");
 
-        //¹«±â ÇÁ¸®ÆÕ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GameObject prefab_weapon_test              = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Weapon_Test");
         GameObject prefab_weapon_manaball = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Weapon_ManaBall");
 
 
-        //----------
+        //----------------------------------------------------------------------------------------------------
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         list_prefab.Add(EnumWeapon.Test, (prefab_node_test, prefab_weapon_test));
         list_prefab.Add(EnumWeapon.Empty, (prefab_node_onlybeat, null));
         list_prefab.Add(EnumWeapon.Manaball, (prefab_node_normal, prefab_weapon_manaball));
@@ -46,15 +47,15 @@ public static class StaticWeaponList
 
 
     //----------------------------------------------------------------------------------------------------
-    // ÇÊ¿äÇÑ ³ëµå¿Í ¹«±â¸¦ ¾Æ·¡ ÇÔ¼öµéÀ» ÅëÇØ¼­ ¾òÀ» ¼ö ÀÖÀ½
+    // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¸¦ ï¿½Æ·ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //----------------------------------------------------------------------------------------------------
 
-    //³ëµå¸¦ ¹ÝÈ¯ÇÔ
+    //ï¿½ï¿½å¸¦ ï¿½ï¿½È¯ï¿½ï¿½
     public static GameObject GetBeatNode(EnumWeapon e_weapon)
     {
         if ( !list_prefab.ContainsKey(e_weapon) )
         {
-            //print("¹«±â¿¡ ÇØ´çÇÏ´Â ³ëµå °´Ã¼°¡ ¾ø½À´Ï´Ù.");
+            //print("ï¿½ï¿½ï¿½â¿¡ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return null;
         }
 
@@ -62,12 +63,12 @@ public static class StaticWeaponList
     }
 
 
-    //¹«±â¸¦ ¹ÝÈ¯ÇÔ
+    //ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½È¯ï¿½ï¿½
     public static GameObject GetWeapon(EnumWeapon e_weapon)
     {
         if (!list_prefab.ContainsKey(e_weapon))
         {
-            //print("¹«±â¿¡ ÇØ´çÇÏ´Â ¹«±â °´Ã¼°¡ ¾ø½À´Ï´Ù.");
+            //print("ï¿½ï¿½ï¿½â¿¡ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return null;
         }
 

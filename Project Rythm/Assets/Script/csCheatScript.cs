@@ -57,7 +57,7 @@ public class csCheatScript : MonoBehaviour
         Debug.Log("Clicked button: " + btn.transform.parent.name);
 
         string SelectWeaponName = btn.transform.parent.name;
-        eWeapon _e;
+        EnumWeapon _e;
         if ( ! Enum.TryParse(SelectWeaponName, true, out _e) )
         {
             print("Enum ¾øÀ½");
