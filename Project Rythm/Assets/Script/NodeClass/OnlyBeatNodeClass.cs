@@ -31,6 +31,11 @@ public class OnlyBeatNodeClass : MonoBehaviour, INodeActionClass
     }
 
 
+    public void Invoke()
+    {
+
+    }
+
     // 버튼 클릭 시 매서드
     public void OnClickEvent()
     {

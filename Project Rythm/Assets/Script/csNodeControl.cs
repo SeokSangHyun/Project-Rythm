@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 
 public enum NodeCheckType
@@ -56,10 +57,10 @@ public class csNodeControl : MonoBehaviour
 
 
     // ∞¥√º √ ±‚»≠
-    void Start()
+    public void Init(int rail_index)
     {
         MainCanvas = GameObject.Find("MainCanvas");
-        m_nodeParent = MainCanvas.transform.Find("CheckArea").gameObject;
+        m_nodeParent = MainCanvas.transform.Find("Area" +  rail_index).gameObject;
 
         gameObject.transform.parent = m_nodeParent.transform;
 

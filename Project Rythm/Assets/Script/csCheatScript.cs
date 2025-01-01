@@ -1,6 +1,7 @@
 //--------------------------------------------------
 // 운영툴 기능
 //--------------------------------------------------
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,9 @@ public class csCheatScript : MonoBehaviour
         {
             GameManager.Instance.SetIsPause(true);
             CheatPanel.SetActive(true);
+
+            // 종료 시 처리
+            //WeaponList.InitItem();
         });
 
         //Panel 처리
@@ -25,6 +29,9 @@ public class csCheatScript : MonoBehaviour
         {
             GameManager.Instance.SetIsPause(false);
             CheatPanel.SetActive(false);
+
+            //게임 시작 처리
+            //GameManager.Instance.AddItem(NodeType.Normal);
         });
 
         Transform weapon_group = CheatPanel.transform.Find("Scroll View/Viewport/Content");
@@ -48,5 +55,17 @@ public class csCheatScript : MonoBehaviour
     private void ButtonEvent_Equip(Button btn)
     {
         Debug.Log("Clicked button: " + btn.transform.parent.name);
+
+        string SelectWeaponName = btn.transform.parent.name;
+        eWeapon _e;
+        if ( ! Enum.TryParse(SelectWeaponName, true, out _e) )
+        {
+            print("Enum 없음");
+            return;
+        }
+
+
+        //여기 장착 처리
+        WeaponManager.Instance.EquipItem(_e);
     }
 }

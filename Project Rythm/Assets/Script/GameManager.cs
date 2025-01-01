@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static TreeEditor.TreeEditorHelper;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,9 +13,6 @@ public class GameManager : MonoBehaviour
 
     //인게임에 필요한 데이터
     private Queue<GameObject> InClearNode = new Queue<GameObject>();
-
-    //장착한 무기
-    private Dictionary<NodeType, (GameObject Node, GameObject Weapon)> list_myWeapon = new Dictionary<NodeType, (GameObject, GameObject)>();
 
 
     //프로젝트 실행 단계에서 실행
@@ -109,22 +105,4 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //----------------------------------------------------------------------------------------------------
-    // 장착 무기 반환
-    //----------------------------------------------------------------------------------------------------
-
-    //무기 장착하기
-    public void InitItem()
-    {
-        list_myWeapon.Clear();
-
-        NodeType nodeType = NodeType.OnlyBeat;
-        list_myWeapon.Add(nodeType, (WeaponList.GetBeatNode(nodeType), WeaponList.GetBeatNode(nodeType)));
-    }
-
-    //무기 장착하기
-    public void AddItem(NodeType node_type)
-    {
-        list_myWeapon.Add(node_type, (WeaponList.GetBeatNode(node_type), WeaponList.GetBeatNode(node_type)));
-    }
 }

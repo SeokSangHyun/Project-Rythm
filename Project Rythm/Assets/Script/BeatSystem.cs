@@ -10,7 +10,6 @@ public class BeatSystem : MonoBehaviour
 
     // 비트 변수
     private     bool        IsBeat = false;
-    private     int         iBeatAccCount, iNodeCount = 0;
 
     private     float       fInterval = 0.25f;
     private     float       fWaitTime = 0.0f;
@@ -23,9 +22,6 @@ public class BeatSystem : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume -= 0.95f;
-
-        GameManager.Instance.InitItem();
-        GameManager.Instance.AddItem(NodeType.Normal);
     }
 
     // Update is called once per frame
@@ -37,26 +33,9 @@ public class BeatSystem : MonoBehaviour
         {
             IsBeat = false;
 
-            Invoke_BeatNode();     //일괄 실행
+            //Invoke_BeatNode();     //일괄 실행
+            WeaponManager.Instance.InvokeEquipItem_Node();
 
-            //switch (iBeatAccCount%8)
-            //{
-            //    case 0:
-            //        break;
-
-            //    case 4:
-            //        CreateBeatNode(NodeType.Normal);
-            //        break;
-
-            //    case 6:
-            //        CreateBeatNode(NodeType.Normal);
-            //        break;
-
-            //    default:
-            //        break;
-            //}
-
-            //print(iBeatAccCount + "Beat!");
         }
     }
 
@@ -75,7 +54,7 @@ public class BeatSystem : MonoBehaviour
         {
             IsBeat = true;
             fWaitTime = 0.0f;
-            iBeatAccCount += 1;
+            StaticVariable.iBeatAccCount += 1;
 
 
             //CreateBeatNode(NodeType.OnlyBeat);
@@ -90,25 +69,14 @@ public class BeatSystem : MonoBehaviour
 
 
     // 내용 : 비트 노드 생성
-    private void CreateBeatNode(NodeType nodeType)
+    private void CreateBeatNode(EnumWeapon e_weapon)
     {
-        GameObject obj = Instantiate( WeaponList.GetBeatNode(nodeType) );
-        obj.name = obj.name + iNodeCount;
+        //GameObject obj = Instantiate( WeaponList.GetBeatNode(e_weapon) );
+        //obj.name = obj.name + StaticVariable.iNodeCount;
 
 
-        ++iNodeCount;
+        //++StaticVariable.iNodeCount;
     }
-
-    // 내용 : 비트 노드 일괄 실행
-    private void Invoke_BeatNode()
-    {
-        GameObject obj = Instantiate(WeaponList.GetBeatNode(NodeType.Test));
-        obj.name = obj.name + iNodeCount;
-
-
-        ++iNodeCount;
-    }
-    
 }
 
 

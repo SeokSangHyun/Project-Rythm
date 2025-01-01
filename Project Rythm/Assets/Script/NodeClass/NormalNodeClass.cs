@@ -18,6 +18,24 @@ public class NormalNodeClass : MonoBehaviour, INodeActionClass
     public int Maintain { get; private set; } = 0;
     public int CoolTime { get; private set; } = 2;
 
+    private GameObject MainCanvas;
+
+    public void Start()
+    {
+        MainCanvas = GameObject.Find("MainCanvas");
+    }
+
+    public void Invoke()
+    {
+        if ((StaticVariable.iBeatAccCount % BeatTimming) == 0)
+        {
+            GameObject obj = Instantiate(gameObject);
+            obj.name = obj.name + StaticVariable.iNodeCount;
+
+            StaticVariable.BeatCounting();
+        }
+    }
+
     public void OnClickEvent()    // 버튼 클릭 시 매서드
     {
         AttackEvent();
@@ -28,7 +46,7 @@ public class NormalNodeClass : MonoBehaviour, INodeActionClass
     public void AttackEvent()     // 조건 만족했을 때 행동 발동 매서드
     {
         csNodeControl controlScript = gameObject.GetComponent<csNodeControl>();
-        GameObject obj = Instantiate(WeaponList.GetWeapon(controlScript.m_nodeType), new Vector3(0, 0, 0), Quaternion.identity);
+        //GameObject obj = Instantiate(WeaponList.GetWeapon(controlScript.m_nodeType), new Vector3(0, 0, 0), Quaternion.identity);
     }
 
 }

@@ -18,6 +18,12 @@ public class TestNodeClass : MonoBehaviour, INodeActionClass
     public int Maintain { get; private set; } = 0;
     public int CoolTime { get; private set; } = 0;
 
+
+    public void Invoke()
+    {
+
+    }
+
     public void OnClickEvent()    // 버튼 클릭 시 매서드
     {
         // 해당 클래스는 버튼 입력 없음
