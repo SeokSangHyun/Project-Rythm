@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class WeaponObjectClass : WeaponClass , IRythmClass
 {
-    // IRythmClass 인터페이스 변수  
+    //WeaponClass
+    [SerializeField] private GameObject override_objNode;
+    [SerializeField] private GameObject override_objWeapon;
+    
+    
+    // IRythmClass ??
     public int StartBeat       { get; private set; } = 0;
     public int BeatTimming     { get; private set; } = 0;
     public int BeatCoolTime    { get; private set; } = 0;
@@ -11,7 +16,17 @@ public class WeaponObjectClass : WeaponClass , IRythmClass
 
 
     //--------------------------------------------------
-    // 초기화 함수
+    // Awake
+    //--------------------------------------------------
+    private void Awake()
+    {
+        base.objNode = override_objNode;
+        base.objWeapon = override_objWeapon;
+    }
+    
+    
+    //--------------------------------------------------
+    // Init
     //--------------------------------------------------
     public override void Init(EnumWeapon _e)
     {
@@ -21,7 +36,7 @@ public class WeaponObjectClass : WeaponClass , IRythmClass
 
 
     //--------------------------------------------------
-    // IRythmClass 인터페이스 함수 정의
+    // IRythmClass ????? ?? ??
     //--------------------------------------------------
     public void Beat(int beatCount)
     {
@@ -39,7 +54,7 @@ public class WeaponObjectClass : WeaponClass , IRythmClass
 
 
     //--------------------------------------------------
-    // IWeaponClass 인터페이스 함수 정의
+    // IWeaponClass ????? ?? ??
     //--------------------------------------------------
     public void Damage()
     {

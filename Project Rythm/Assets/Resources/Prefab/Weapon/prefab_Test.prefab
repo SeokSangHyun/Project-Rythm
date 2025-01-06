@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5643127753656712213}
   - component: {fileID: -5192519209558398013}
   m_Layer: 0
-  m_Name: prefab_Dagger
+  m_Name: prefab_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd90b9b39becca145b800ae636bd5356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  override_objNode: {fileID: 2871473697522547830, guid: 3d8864cd95663584bb79e7afccdfe240,
+  override_objNode: {fileID: 6666242355760157957, guid: 27b71a5fe8641814197ef2f0cfe29cf4,
     type: 3}
-  override_objWeapon: {fileID: 7230513621210762428, guid: bed73ab42304e75449a512925334e3a5,
-    type: 3}
+  override_objWeapon: {fileID: 0}

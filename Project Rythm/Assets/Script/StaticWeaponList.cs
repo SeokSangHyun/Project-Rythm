@@ -17,30 +17,32 @@ public enum NodeType
 public static class StaticWeaponList
 {
     //
-    public static Dictionary<EnumWeapon, (GameObject Node, GameObject Weapon)> list_prefab = new Dictionary<EnumWeapon, (GameObject, GameObject)>();
+    public static Dictionary<EnumWeapon, GameObject> list_prefab = new Dictionary<EnumWeapon, GameObject>();
 
 
     // 
     public static void WeaponDataLoad()
     {
-        //��� ������
-        GameObject prefab_node_test                = Resources.Load<GameObject>("Prefab/BitNodes/prefab_BeatNode_Test");
-        GameObject prefab_node_onlybeat            = Resources.Load<GameObject>("Prefab/BitNodes/prefab_BeatNode_Arrow");
-        GameObject prefab_node_normal = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Normal_White_01");
-
-        //���� ������
-        GameObject prefab_weapon_test              = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Weapon_Test");
-        GameObject prefab_weapon_manaball = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Weapon_ManaBall");
-
-
-        //----------------------------------------------------------------------------------------------------
-        // ���� ���
-        list_prefab.Add(EnumWeapon.Test, (prefab_node_test, prefab_weapon_test));
-        list_prefab.Add(EnumWeapon.Empty, (prefab_node_onlybeat, null));
-        list_prefab.Add(EnumWeapon.Manaball, (prefab_node_normal, prefab_weapon_manaball));
-        list_prefab.Add(EnumWeapon.Dagger, (prefab_node_normal, prefab_weapon_manaball));
-        list_prefab.Add(EnumWeapon.RayserBeam, (prefab_node_normal, prefab_weapon_manaball));
-        list_prefab.Add(EnumWeapon.Sword, (prefab_node_normal, prefab_weapon_manaball));
+        
+        
+        // //��� ������
+        // GameObject prefab_node_test                = Resources.Load<GameObject>("Prefab/BitNodes/prefab_BeatNode_Test");
+        // GameObject prefab_node_onlybeat            = Resources.Load<GameObject>("Prefab/BitNodes/prefab_BeatNode_Arrow");
+        // GameObject prefab_node_normal = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Normal_White_01");
+        //
+        // //���� ������
+        // GameObject prefab_weapon_test              = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Weapon_Test");
+        // GameObject prefab_weapon_manaball = Resources.Load<GameObject>("Prefab/BitNodes/prefab_Weapon_ManaBall");
+        //
+        //
+        // //----------------------------------------------------------------------------------------------------
+        // // ���� ���
+        // list_prefab.Add(EnumWeapon.Test, (prefab_node_test, prefab_weapon_test));
+        // list_prefab.Add(EnumWeapon.Empty, (prefab_node_onlybeat, null));
+        // list_prefab.Add(EnumWeapon.Manaball, (prefab_node_normal, prefab_weapon_manaball));
+        // list_prefab.Add(EnumWeapon.Dagger, (prefab_node_normal, prefab_weapon_manaball));
+        // list_prefab.Add(EnumWeapon.RayserBeam, (prefab_node_normal, prefab_weapon_manaball));
+        // list_prefab.Add(EnumWeapon.Sword, (prefab_node_normal, prefab_weapon_manaball));
     }
 
 
@@ -59,7 +61,10 @@ public static class StaticWeaponList
             return null;
         }
 
-        return list_prefab[e_weapon].Node;
+        WeaponClass weapon = list_prefab[e_weapon].GetComponent<WeaponObjectClass>();
+        GameObject obj = Resources.Load<GameObject>("Prefab/prefab_Dagger");;
+        
+        return obj;
     }
 
 
@@ -72,7 +77,10 @@ public static class StaticWeaponList
             return null;
         }
 
-        return list_prefab[e_weapon].Weapon;
+        WeaponClass weapon = list_prefab[e_weapon].GetComponent<WeaponObjectClass>();
+        GameObject obj = Resources.Load<GameObject>("Prefab/prefab_Dagger");;
+        
+        return obj;
     }
 
 

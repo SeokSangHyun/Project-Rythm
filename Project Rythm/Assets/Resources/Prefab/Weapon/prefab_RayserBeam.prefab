@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5643127753656712213}
-  - component: {fileID: -5192519209558398013}
+  - component: {fileID: 3013190843649531609}
   m_Layer: 0
-  m_Name: prefab_Dagger
+  m_Name: prefab_RayserBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5192519209558398013
+--- !u!114 &3013190843649531609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   override_objNode: {fileID: 2871473697522547830, guid: 3d8864cd95663584bb79e7afccdfe240,
     type: 3}
-  override_objWeapon: {fileID: 7230513621210762428, guid: bed73ab42304e75449a512925334e3a5,
+  override_objWeapon: {fileID: 7230513621210762428, guid: e57ea82109233be4a81654708c73cf34,
     type: 3}

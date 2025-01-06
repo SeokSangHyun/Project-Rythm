@@ -2,16 +2,16 @@ using UnityEngine;
 
 
 //--------------------------------------------------
-// ÀåºñÀÇ ¸®µë¿¡ ´ëÇÑ Interface Class
+// ì¥ë¹„ì˜ ë¦¬ë“¬ì— ëŒ€í•œ Interface Class
 //--------------------------------------------------
 public interface IRythmClass
 {
-    //³ëµå ¿ë º¯¼ö
-    int StartBeat { get; }          // ºñÆ® ½ÃÀÛ ½ÃÁ¡
-    int BeatTimming { get; }        // ºñÆ® ³ª¿À´Â Å¸ÀÌ¹Ö (ex. 1ÀÌ¸é ¸Å ºñÆ®¸¶´Ù Ãâ·Â)
-    int BeatCoolTime { get; }       // ³ëµå°¡ ³ª¿À°í ´ÙÀ½ ±â´Ù¸®´Â ½Ã°£
+    //ë…¸ë“œ ìš© ë³€ìˆ˜
+    int StartBeat { get; }          // ë¹„íŠ¸ ì‹œì‘ ì‹œì 
+    int BeatTimming { get; }        // ë¹„íŠ¸ ë‚˜ì˜¤ëŠ” íƒ€ì´ë° (ex. 1ì´ë©´ ë§¤ ë¹„íŠ¸ë§ˆë‹¤ ì¶œë ¥)
+    int BeatCoolTime { get; }       // ë…¸ë“œê°€ ë‚˜ì˜¤ê³  ë‹¤ìŒ ê¸°ë‹¤ë¦¬ëŠ” ì‹œê°„
 
-    int RailIndex { get; }          // ³ëµå°¡ ·¹ÀÏ¿¡ ³ª¿À´Â À§Ä¡ (0ÀÌ¸é ¸ğµç Rail¿¡¼­ ³ª¿È)
+    int RailIndex { get; }          // ë…¸ë“œê°€ ë ˆì¼ì— ë‚˜ì˜¤ëŠ” ìœ„ì¹˜ (0ì´ë©´ ëª¨ë“  Railì—ì„œ ë‚˜ì˜´)
 
-    void Beat(int beatCount);       //ºñÆ® Ã¼Å©
+    void Beat(int beatCount);       //ë¹„íŠ¸ ì²´í¬
 }

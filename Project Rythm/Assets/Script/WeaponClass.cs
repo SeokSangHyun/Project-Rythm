@@ -17,8 +17,11 @@ public enum EnumWeapon
 //--------------------------------------------------
 public class WeaponClass : MonoBehaviour
 {
-    //노드 용 변수
+    //?? ? ??
     protected EnumWeapon eWeapon { get; set; }
+    
+    protected GameObject objNode { get; set; }
+    protected GameObject objWeapon { get; set; }
     
     public virtual void Init(EnumWeapon _e)
     {
