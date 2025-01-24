@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 93807322}
   - component: {fileID: 93807321}
   - component: {fileID: 93807324}
+  - component: {fileID: 93807325}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -602,6 +603,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402566fa7ba6b5a409903e3876957fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &93807325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93807320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c5abff7c9fb404cadf754a3016988a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: Assets/Resources/TableData/WeaponTable.csv
 --- !u!1 &119126228
 GameObject:
   m_ObjectHideFlags: 0

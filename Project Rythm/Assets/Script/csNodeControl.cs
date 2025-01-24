@@ -16,20 +16,20 @@ public enum NodeCheckType
 
 public class csNodeControl : MonoBehaviour
 {
-    //------------------------------Prefab º¯¼öµé
+    //------------------------------Prefab ë³€ìˆ˜ë“¤
 
 
-    //------------------------------»ç¿ë ´ë»ó °´Ã¼
+    //------------------------------ì‚¬ìš© ëŒ€ìƒ ê°ì²´
     private GameObject MainCanvas;
 
 
 
 
-    //------------------------------½Ã½ºÅÛ º¯¼öµé
+    //------------------------------ì‹œìŠ¤í…œ ë³€ìˆ˜ë“¤
     public NodeType m_nodeType;
 
 
-    // Ã¼Å© Å¸ÀÔ¿¡ ´ëÇÑ º¯¼öµé
+    // ì²´í¬ íƒ€ì…ì— ëŒ€í•œ ë³€ìˆ˜ë“¤
     private NodeCheckType eNodeCheckType = NodeCheckType.Miss;
     private float MissDist = 200.0f;
     private float NormalDist = 80.0f;
@@ -38,7 +38,7 @@ public class csNodeControl : MonoBehaviour
 
 
 
-    //------------------------------»ç¿ëÇÒ º¯¼öµé
+    //------------------------------ì‚¬ìš©í•  ë³€ìˆ˜ë“¤
     private GameObject m_nodeParent;
     private RectTransform m_rectTransform;
 
@@ -50,13 +50,13 @@ public class csNodeControl : MonoBehaviour
     private float m_distance = 1.0f;
 
 
-    // ³ëµå »óÅÂ È®ÀÎ¿ë º¯¼ö
+    // ë…¸ë“œ ìƒíƒœ í™•ì¸ìš© ë³€ìˆ˜
     private bool IsInit = false;
     private bool IsAreaIn = false;
     private bool IsDead = false;
 
 
-    // °´Ã¼ ÃÊ±âÈ­
+    // ê°ì²´ ì´ˆê¸°í™”
     public void Init(int rail_index)
     {
         MainCanvas = GameObject.Find("MainCanvas");
@@ -75,16 +75,16 @@ public class csNodeControl : MonoBehaviour
     {
         if (GameManager.Instance.CheckIsPause()) { return; }
 
-        //ÃÊ±âÈ­ ¾ÈÇß´Ù¸é ¹İÈ¯ Ã³¸®
+        //ì´ˆê¸°í™” ì•ˆí–ˆë‹¤ë©´ ë°˜í™˜ ì²˜ë¦¬
         if (!IsInit) { return; }
 
-        //³ëµå ¿òÁ÷ÀÓ °»½Å
+        //ë…¸ë“œ ì›€ì§ì„ ê°±ì‹ 
         m_rectTransform.anchoredPosition += new Vector2(m_moveSpeed * Time.deltaTime, 0);
 
-        // ³ëµåÀÇ »óÅÂ Ã³¸®
+        // ë…¸ë“œì˜ ìƒíƒœ ì²˜ë¦¬
         CheckAreaCondition();
 
-        // ³ëµåÀÇ Å¸ÀÔ Ã³¸®
+        // ë…¸ë“œì˜ íƒ€ì… ì²˜ë¦¬
         eNodeCheckType = CheckNodeType();
     }
 
@@ -97,7 +97,7 @@ public class csNodeControl : MonoBehaviour
 
 
     //--------------------------------------------------
-    // ¹öÆ°ÀÇ Å¸ÀÔ Ã¼Å©
+    // ë²„íŠ¼ì˜ íƒ€ì… ì²´í¬
     //--------------------------------------------------
     NodeCheckType CheckNodeType()
     {
@@ -125,12 +125,12 @@ public class csNodeControl : MonoBehaviour
 
 
     //--------------------------------------------------
-    // ¹öÆ°ÀÇ Å¸ÀÔ Ã¼Å©
+    // ë²„íŠ¼ì˜ íƒ€ì… ì²´í¬
     //--------------------------------------------------
     void CheckAreaCondition()
     {
 
-        //³ª°¬À» ¶§ Ã³¸®
+        //ë‚˜ê°”ì„ ë•Œ ì²˜ë¦¬
         if (!IsDead && m_rectTransform.anchoredPosition.x >= m_nodeParent.GetComponent<RectTransform>().sizeDelta.x / 2)
         {
             IsDead = true;
@@ -144,7 +144,7 @@ public class csNodeControl : MonoBehaviour
             Destroy(gameObject, 1.0f);
         }
 
-        //µé¾î¿ÔÀ» ¶§ Ã³¸®
+        //ë“¤ì–´ì™”ì„ ë•Œ ì²˜ë¦¬
         if (!IsAreaIn && -m_nodeParent.GetComponent<RectTransform>().sizeDelta.x / 2 <= m_rectTransform.anchoredPosition.x)
         {
             IsAreaIn = true;
@@ -194,7 +194,7 @@ public class csNodeControl : MonoBehaviour
 
 
     //--------------------------------------------------
-    // ¹öÆ° ÀÔ·Â Ã¼Å©
+    // ë²„íŠ¼ ì…ë ¥ ì²´í¬
     //--------------------------------------------------
     void OnTriggerEnter2D(Collider2D collision)
     {

@@ -42,7 +42,7 @@ public class csvWeaponTableReader : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError($"Error reading CSV file: {e.Message}");
+              Debug.LogError($"Error reading CSV file: {e.Message}");
         }
 
         return csvData;

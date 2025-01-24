@@ -4,15 +4,15 @@ using UnityEngine;
 
 
 //--------------------------------------------------
-// ¸ğµç ¿ÀºêÁ§Æ®ÀÇ ±âº» ¼Ó¼ºÀ» °¡Áø Object Interface
+// ëª¨ë“  ì˜¤ë¸Œì íŠ¸ì˜ ê¸°ë³¸ ì†ì„±ì„ ê°€ì§„ Object Interface
 //--------------------------------------------------
 public interface IObjectClass
 {
     string      Name { get; }
     float       HP {  get; }
 
-    void Attack();          // °ø°İ ¸Å¼­µå
-    void Hit(float damage);             // ¸Â¾ÒÀ» ¶§ ¸Å¼­µå
-    void Skill();          // ½ºÅ³ »ç¿ëÇÏ´Â ¸Å¼­µå
+    void Attack();          // ê³µê²© ë§¤ì„œë“œ
+    void Hit(float damage);             // ë§ì•˜ì„ ë•Œ ë§¤ì„œë“œ
+    void Skill();          // ìŠ¤í‚¬ ì‚¬ìš©í•˜ëŠ” ë§¤ì„œë“œ
 }
 
