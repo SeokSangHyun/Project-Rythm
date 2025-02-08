@@ -1,19 +1,20 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
+
+//ê²Œì„ í”Œë ˆì´ ì”¬ì—ì„œ ë¹„íŠ¸ê°€ í˜ëŸ¬ê°€ëŠ” ê²ƒì— ëŒ€í•œ ê¸°ëŠ¥ì„ ë‹´ë‹¹í•˜ëŠ” í´ë˜ìŠ¤
 public class BeatSystem : MonoBehaviour
 {
-    //»ç¿îµå Ãß°¡
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     private AudioSource audioSource;
     public AudioClip audioClip;
 
 
-    // ºñÆ® º¯¼ö
+    // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     private     bool        IsBeat = false;
 
     private     float       fInterval = 0.25f;
     private     float       fWaitTime = 0.0f;
-
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,13 +28,13 @@ public class BeatSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.CheckIsPause()) { return; }
+        if (SystemManager.Instance.CheckIsPause()) { return; }
 
         if ( BeatUpdate(Time.deltaTime) )
         {
             IsBeat = false;
 
-            //Invoke_BeatNode();     //ÀÏ°ı ½ÇÇà
+            //Invoke_BeatNode();     //ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½
             WeaponManager.Instance.InvokeEquipItem_Node();
 
         }
@@ -41,11 +42,11 @@ public class BeatSystem : MonoBehaviour
 
 
     //----------------------------------------------------------------------------------------------------
-    // ³ëµå ºñÆ® °è»ê
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
     //----------------------------------------------------------------------------------------------------
 
-    // ³»¿ë : ºñÆ®¸¦ ÆÇ´ÜÇØ¼­ ¹İÈ¯
-    //        True ¹İÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½È¯
+    //        True ï¿½ï¿½È¯
     private bool BeatUpdate(float frame)
     {
         fWaitTime += frame;
@@ -68,7 +69,7 @@ public class BeatSystem : MonoBehaviour
     }
 
 
-    // ³»¿ë : ºñÆ® ³ëµå »ı¼º
+    // ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void CreateBeatNode(EnumWeapon e_weapon)
     {
         //GameObject obj = Instantiate( WeaponList.GetBeatNode(e_weapon) );

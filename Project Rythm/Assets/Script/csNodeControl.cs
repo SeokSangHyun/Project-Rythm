@@ -73,7 +73,7 @@ public class csNodeControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.CheckIsPause()) { return; }
+        if (SystemManager.Instance.CheckIsPause()) { return; }
 
         //초기화 안했다면 반환 처리
         if (!IsInit) { return; }
@@ -138,9 +138,9 @@ public class csNodeControl : MonoBehaviour
             if (m_nodeType != NodeType.Test && m_nodeType != NodeType.OnlyBeat)
             {
                 print("OUT < " + gameObject.name);
-                GameManager.Instance.RemoveInClearNode();
+                SystemManager.Instance.RemoveInClearNode();
             }
-            //StartCoroutine(GameManager.Instance.DelayTime(0.5f, () => Destroy(gameObject)));
+            //StartCoroutine(SystemManager.Instance.DelayTime(0.5f, () => Destroy(gameObject)));
             Destroy(gameObject, 1.0f);
         }
 
@@ -152,7 +152,7 @@ public class csNodeControl : MonoBehaviour
             if (m_nodeType != NodeType.Test && m_nodeType != NodeType.OnlyBeat)
             {
                 print("IN >> " + gameObject.name);
-                GameManager.Instance.AddInClearNode(gameObject);
+                SystemManager.Instance.AddInClearNode(gameObject);
             }
         }
     }

@@ -1,5 +1,5 @@
 //--------------------------------------------------
-// ¿î¿µÅø ±â´É
+// ï¿½î¿µï¿½ï¿½ ï¿½ï¿½ï¿½
 //--------------------------------------------------
 using System;
 using UnityEngine;
@@ -13,25 +13,25 @@ public class csCheatScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //¸ÞÀÎ UI Ã³¸®
+        //ï¿½ï¿½ï¿½ï¿½ UI Ã³ï¿½ï¿½
         MainCheatButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            GameManager.Instance.SetIsPause(true);
+            SystemManager.Instance.SetIsPause(true);
             CheatPanel.SetActive(true);
 
-            // Á¾·á ½Ã Ã³¸®
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
             //WeaponList.InitItem();
         });
 
-        //Panel Ã³¸®
+        //Panel Ã³ï¿½ï¿½
         Button close_btn = CheatPanel.transform.Find("CloseButton").GetComponent<Button>();
         close_btn.onClick.AddListener(() =>
         {
-            GameManager.Instance.SetIsPause(false);
+            SystemManager.Instance.SetIsPause(false);
             CheatPanel.SetActive(false);
 
-            //°ÔÀÓ ½ÃÀÛ Ã³¸®
-            //GameManager.Instance.AddItem(NodeType.Normal);
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+            //SystemManager.Instance.AddItem(NodeType.Normal);
         });
 
         Transform weapon_group = CheatPanel.transform.Find("Scroll View/Viewport/Content");
@@ -60,12 +60,12 @@ public class csCheatScript : MonoBehaviour
         EnumWeapon _e;
         if ( ! Enum.TryParse(SelectWeaponName, true, out _e) )
         {
-            print("Enum ¾øÀ½");
+            print("Enum ï¿½ï¿½ï¿½ï¿½");
             return;
         }
 
 
-        //¿©±â ÀåÂø Ã³¸®
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         WeaponManager.Instance.EquipItem(_e);
     }
 }

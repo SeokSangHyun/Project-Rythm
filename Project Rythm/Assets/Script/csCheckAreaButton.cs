@@ -15,7 +15,7 @@ public class csCheckAreaSystem : MonoBehaviour
 
 
     //----------------------------------------------------------------------------------------------------
-    // »ç¿ëÇÒ ¸Å¼­µå ¾Æ·¡¿¡¼­ ±¸Çö ¡é¡é¡é
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¼ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //----------------------------------------------------------------------------------------------------
 
     void OnButtonClick()
@@ -24,10 +24,10 @@ public class csCheckAreaSystem : MonoBehaviour
 
         //
 
-        GameObject obj = GameManager.Instance.RemoveInClearNode();
+        GameObject obj = SystemManager.Instance.RemoveInClearNode();
         if (obj == null)
         {
-            print("»èÁ¦ÇÒ ³ëµå°¡ ¾øÀ½");
+            print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½");
             return;
         }
         print("Click < " + obj);
