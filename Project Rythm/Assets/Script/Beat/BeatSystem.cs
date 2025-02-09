@@ -34,8 +34,8 @@ public class BeatSystem : MonoBehaviour
         {
             IsBeat = false;
 
-            //Invoke_BeatNode();     //�ϰ� ����
             WeaponManager.Instance.InvokeEquipItem_Node();
+            //InvokeBeat 요거 실행해야함
 
         }
     }

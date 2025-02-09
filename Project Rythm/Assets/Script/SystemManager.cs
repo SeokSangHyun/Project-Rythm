@@ -7,14 +7,14 @@ public class SystemManager : MonoBehaviour
 {
     private static SystemManager instance = null;
 
-    // >> 게임 일시 정지 변수
-    private bool IsPause = true;
+    private bool IsGamePlay                     = false;        // 게임을 플레이 중인지에 대한 변수
+    private bool IsPause                        = true;         // 게임 일시 정지 변수
 
     // >> 무슨 변수지?
     private Queue<GameObject> InClearNode = new Queue<GameObject>();
 
-    // >> 지금 진행중인 몬스터의 난이도 ( 0 : 기본 난이도. 난이도는 오름차순)
-    private int Difficulty = 0;
+    // >> 지금 진행중인 몬스터의 난이도 ( 1 : 기본 난이도. 난이도는 오름차순)
+    private int Difficulty = 1;
     
 
     //������Ʈ ���� �ܰ迡�� ����
@@ -46,9 +46,15 @@ public class SystemManager : MonoBehaviour
 
     }
     
+    // IsGamePlay에 대한 Getter/Setter
+    public bool GetIsGamePlay() { return IsGamePlay; }
+    public void SetIsGamePlay(bool isgameplay) { IsGamePlay = isgameplay; }
+    
+    
     // IsPause에 대한 Getter/Setter
     public bool CheckIsPause() { return IsPause; }
     public void SetIsPause(bool ispause) { IsPause = ispause; }
+    
 
     // Difficuly에 대한 Getter/Setter
     public int GetDifficulty() { return Difficulty; }

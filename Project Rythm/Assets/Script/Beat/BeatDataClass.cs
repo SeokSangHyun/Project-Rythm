@@ -6,12 +6,25 @@ public class BeatDataClass
 {
     bool[][] m_arrNode        { get; set; }
 
-        //----------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------
     // 비트에 출력될 노드 배치 함수
-    //----------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------
+
+    // 피셔 예이츠 셔플 알고리즘을 통해 섞기
+    void ShuffleArray(bool[] arr)
+    {
+        System.Random rand = new System.Random();
+        int n = arr.Length;
+
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = rand.Next(0, i + 1); // 0부터 i 사이의 무작위 인덱스 선택
+            (arr[i], arr[j]) = (arr[j], arr[i]); // Swap (C# 튜플 사용)
+        }
+    }
+    
     public void InitializeBeatSetting()
     {
-        // 착용중인 무기 가져오기
         GameObject objGameManager = GameObject.Find("GameManager");
         var listMyWeapon = objGameManager.GetComponent<WeaponManager>().GetMyWeaponList();
         
@@ -21,7 +34,8 @@ public class BeatDataClass
         //          ㄴ 무기 비트 중에 중간이 비어 있는게 있을 경우? (o|oo , o|o|o ...)
         //          ㄴ 무기 비트 총합을 구할 때 비어 있는 것과 실제 있는 것을 구별
         //          ㄴ 비트 타입으로 모양을 구별함 -> 실질 모양은 알아서 구별해야함 -> 타입에 따라서 알아서 반환해주는 함수 추가 필요
-        //      ㄴ 빈 비트의 수 = [전체 길이 - [무기 비트 총합]
+        //      ㄴ 빈 비트의 수 = [전체 길이 - [무기 비트 총합]----------------------------------------
+        // 착용중인 무기 가져오기
         //      ㄴ 비트를 모은 리스트
         // 3. 배치되는 노드의 알고리즘
         //      ㄴ 비트 일지 . 빈 비트 일지 확률 검사 -> 전체 비트 배열 채우기
@@ -32,7 +46,7 @@ public class BeatDataClass
         // 따라서 난이도에 따라서 빈 노드의 수가 적어짐
         //
 
-        //listMyWeapon;
+        //listMyWeapon;--------------------------------------
         
         int total_length = 0;
         int full_cnt = 0;
@@ -76,21 +90,30 @@ public class BeatDataClass
         
         // 변수 초기화
         m_arrNode = new bool[cnt_displayarea][];
-        double temp = total_length/cnt_displayarea;
-        int OneLineBeatCount = Math.Ceiling( temp );
+        int OneLineBeatCount = (int)Math.Ceiling( (double)total_length/(double)cnt_displayarea );
 
-        for (int i = 0; i < OneLineBeatCount; ++i)
+        for (int i = 0; i < cnt_displayarea; ++i)
         {
+            // 배열 초기화
             m_arrNode[i] = new bool[OneLineBeatCount];
+
+            for (int j = 0; j < OneLineBeatCount; ++j)
+            {
+                m_arrNode[i][j] = true;    // 배열의값 채우기
+            }
+            
+            // 비트에 초기화
+            ShuffleArray(m_arrNode[i]);
         }
         
-        
+        // 이 때 노드 나오도록 업데이트
+        SystemManager.Instance.SetIsGamePlay(true);
     }
     
     
     //비트 세팅 함수
-    void BeatSetting()
+    void InvokeBeat()
     {
-
+        //m_arrNode에 있는 정보를 비트에 맞게 출력하면됨
     }
 }
