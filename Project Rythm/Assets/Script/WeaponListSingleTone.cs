@@ -14,17 +14,59 @@ public enum NodeType
 
 
 
-public static class StaticWeaponList
+public class WeaponListSingleTone : MonoBehaviour
 {
+    private static WeaponListSingleTone instance = null;
     //
-    public static Dictionary<EnumWeapon, GameObject> list_prefab = new Dictionary<EnumWeapon, GameObject>();
+    public Dictionary<EnumWeapon, GameObject> list_prefab = new Dictionary<EnumWeapon, GameObject>();
 
+    // GameMager Instance -> 무조건 이 겻으로 맵버 변수와 함수를 접근해야함 
+    public static WeaponListSingleTone Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return null;
+            }
 
+            return instance;
+        }
+
+    }
+    
+    
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 변경 시 유지
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    void Start()
+    {
+        instance.WeaponDataLoad();
+    }
+
+    
     // 
-    public static void WeaponDataLoad()
+    public void WeaponDataLoad()
     {
         //list_prefab 
         GameObject[] objs = Resources.LoadAll<GameObject>("Prefab/Weapon");
+
+        for (int i = 0; i < objs.Length; i++)
+        {
+            WeaponObjectClass script = objs[i].GetComponent<WeaponObjectClass>();
+            script.Init();
+            EnumWeapon _e = script.GeteWeapon();
+            list_prefab[_e] = objs[i];
+        }
     }
 
 
@@ -35,7 +77,7 @@ public static class StaticWeaponList
     //----------------------------------------------------------------------------------------------------
 
     //무기 반환
-    public static GameObject GetWeapon(EnumWeapon e_weapon)
+    public GameObject GetWeapon(EnumWeapon e_weapon)
     {
         return list_prefab[e_weapon];
     }

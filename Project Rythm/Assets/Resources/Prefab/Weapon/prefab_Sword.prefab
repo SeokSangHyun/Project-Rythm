@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd90b9b39becca145b800ae636bd5356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  override_eWeapon: 5
   override_objNode: {fileID: 2871473697522547830, guid: 3d8864cd95663584bb79e7afccdfe240,
     type: 3}
   override_objWeapon: {fileID: 7230513621210762428, guid: bed73ab42304e75449a512925334e3a5,

@@ -23,11 +23,15 @@ public class WeaponObjectClass : WeaponClass , IRythmClass
     //--------------------------------------------------
     private void Awake()
     {
+    }
+    public void Init()
+    {
         base.eWeapon = override_eWeapon;
         base.objNode = override_objNode;
         base.objWeapon = override_objWeapon;
 
         NodeType nodetype = override_objNode.GetComponent<csNodeControl>().m_nodeType;
+        print(nodetype);
         switch (nodetype)
         {
             case NodeType.Test:
@@ -51,6 +55,12 @@ public class WeaponObjectClass : WeaponClass , IRythmClass
         base.Init(_e);
     }
 
+    public EnumWeapon GeteWeapon()
+    {
+        return override_eWeapon;
+    }
+    
+    
 
 
     //--------------------------------------------------

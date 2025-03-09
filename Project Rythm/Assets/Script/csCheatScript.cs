@@ -30,8 +30,9 @@ public class csCheatScript : MonoBehaviour
             SystemManager.Instance.SetIsPause(false);
             CheatPanel.SetActive(false);
 
-            //���� ���� ó��
-            //SystemManager.Instance.AddItem(NodeType.Normal);
+            //
+            var beatdata = GameObject.Find("BeatManager").GetComponent<BeatDataManagerClass>();
+            beatdata.InitializeBeatSetting();
         });
 
         Transform weapon_group = CheatPanel.transform.Find("Scroll View/Viewport/Content");
@@ -64,8 +65,7 @@ public class csCheatScript : MonoBehaviour
             return;
         }
 
-
-        //���� ���� ó��
+        //a
         WeaponManager.Instance.EquipItem(_e);
     }
 }

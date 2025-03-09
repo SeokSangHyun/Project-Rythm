@@ -5,16 +5,17 @@ using UnityEngine.Audio;
 //게임 플레이 씬에서 비트가 흘러가는 것에 대한 기능을 담당하는 클래스
 public class BeatSystem : MonoBehaviour
 {
-    //���� �߰�
+    // Audio 변수
     private AudioSource audioSource;
     public AudioClip audioClip;
 
-
-    // ��Ʈ ����
+    // 비트 데이터 변수
     private     bool        IsBeat = false;
 
     private     float       fInterval = 0.25f;
     private     float       fWaitTime = 0.0f;
+
+    private     BeatDataManagerClass scriptBeatDataManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,20 +24,22 @@ public class BeatSystem : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume -= 0.95f;
+        
+        scriptBeatDataManager = GetComponent<BeatDataManagerClass>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SystemManager.Instance.CheckIsPause()) { return; }
+        
+        if (SystemManager.Instance.CheckIsPause() && !SystemManager.Instance.GetIsGamePlay()) { return; }
 
         if ( BeatUpdate(Time.deltaTime) )
         {
             IsBeat = false;
-
-            WeaponManager.Instance.InvokeEquipItem_Node();
+            
             //InvokeBeat 요거 실행해야함
-
+            scriptBeatDataManager.InvokeBeat();
         }
     }
 
@@ -67,17 +70,7 @@ public class BeatSystem : MonoBehaviour
 
         return false;
     }
-
-
-    // ���� : ��Ʈ ��� ����
-    private void CreateBeatNode(EnumWeapon e_weapon)
-    {
-        //GameObject obj = Instantiate( WeaponList.GetBeatNode(e_weapon) );
-        //obj.name = obj.name + StaticVariable.iNodeCount;
-
-
-        //++StaticVariable.iNodeCount;
-    }
+    
 }
 
 
